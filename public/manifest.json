@@ -1,0 +1,14 @@
+{
+  "name": "Ava",
+  "short_name": "Ava",
+  "description": "家庭助理全屏 PWA 控制面板",
+  "start_url": "/",
+  "display": "fullscreen",
+  "background_color": "#0a0a0a",
+  "theme_color": "#0a0a0a",
+  "orientation": "landscape",
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
