@@ -34,7 +34,7 @@ export default function App() {
           <Typography variant="body2" sx={{ mb: 3, opacity: 0.7 }}>
             欢迎使用 Ava Web！请先配置 Home Assistant 连接信息。
           </Typography>
-          <SettingsDialog />
+          <SettingsDialog showAsButton />
         </Paper>
       </Box>
     )

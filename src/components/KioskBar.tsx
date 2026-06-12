@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
 import { Box, IconButton, Typography } from '@mui/material'
-import { Maximize2, Minimize2, Sun, Moon, Settings, Battery, Wifi, WifiOff } from 'lucide-react'
+import { Maximize2, Minimize2, Sun, Moon, Battery, Wifi, WifiOff } from 'lucide-react'
 import { useAppStore } from '../stores/appStore'
 import { useConnectionStatus } from '../hooks/useConnectionStatus'
 import { useFullscreen } from '../hooks/useFullscreen'
 import { useScreenWakeLock } from '../hooks/useScreenWakeLock'
+import SettingsDialog from './SettingsDialog'
 
 export default function KioskBar() {
   const { theme, setTheme, kioskMode, setKioskMode } = useAppStore()
@@ -83,6 +84,7 @@ export default function KioskBar() {
         <IconButton size="small" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
           {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
         </IconButton>
+        <SettingsDialog />
         <IconButton size="small" onClick={toggleKiosk}>
           {isFullscreen ? <Minimize2 size={20} /> : <Maximize2 size={20} />}
         </IconButton>

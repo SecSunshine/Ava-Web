@@ -7,7 +7,11 @@ import {
 import { Settings, X } from 'lucide-react'
 import { useAppStore } from '../stores/appStore'
 
-export default function SettingsDialog() {
+interface SettingsDialogProps {
+  showAsButton?: boolean
+}
+
+export default function SettingsDialog({ showAsButton = false }: SettingsDialogProps) {
   const [open, setOpen] = useState(false)
   const { haConfig, setHAConfig, selectedDomains, setSelectedDomains } = useAppStore()
   const [url, setUrl] = useState(haConfig?.url || '')
@@ -30,11 +34,25 @@ export default function SettingsDialog() {
     }
   }
 
+  const trigger = showAsButton ? (
+    <Button
+      variant="contained"
+      size="large"
+      startIcon={<Settings size={20} />}
+      onClick={() => setOpen(true)}
+      sx={{ px: 4, py: 1.5, borderRadius: 3 }}
+    >
+      配置连接
+    </Button>
+  ) : (
+    <IconButton onClick={() => setOpen(true)} size="small">
+      <Settings size={20} />
+    </IconButton>
+  )
+
   return (
     <>
-      <IconButton onClick={() => setOpen(true)} size="small">
-        <Settings size={20} />
-      </IconButton>
+      {trigger}
       <Dialog open={open} onClose={() => setOpen(false)} maxWidth="sm" fullWidth>
         <DialogTitle sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           设置
@@ -79,10 +97,21 @@ export default function SettingsDialog() {
               />
             ))}
           </FormGroup>
+          {haConfig && (
+            <Button
+              color="error"
+              variant="outlined"
+              size="small"
+              onClick={() => { setHAConfig(null); setUrl(''); setToken(''); setOpen(false) }}
+              sx={{ mt: 1 }}
+            >
+              断开连接 / 清除配置
+            </Button>
+          )}
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setOpen(false)}>取消</Button>
-          <Button variant="contained" onClick={handleSave}>保存</Button>
+          <Button variant="contained" onClick={handleSave} disabled={!url || !token}>保存</Button>
         </DialogActions>
       </Dialog>
     </>
