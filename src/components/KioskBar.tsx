@@ -55,8 +55,10 @@ export default function KioskBar() {
         px: 2,
         zIndex: 1200,
         background: theme === 'dark'
-          ? 'rgba(10,10,10,0.8)'
-          : 'rgba(255,255,255,0.8)',
+          ? 'rgba(10,10,10,0.85)'
+          : 'rgba(255,255,255,0.85)',
+        backdropFilter: 'blur(10px)',
+        WebkitBackdropFilter: 'blur(10px)',
         borderBottom: '1px solid rgba(128,128,128,0.15)'
       }}
     >

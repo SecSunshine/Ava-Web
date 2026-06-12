@@ -43,7 +43,8 @@ export default function App() {
   return (
     <Box sx={{ height: '100vh', display: 'flex', flexDirection: 'column', bgcolor: 'background.default' }}>
       <KioskBar />
-      <Box sx={{ flex: 1, overflowY: 'auto', overflowX: 'hidden' }}>
+      {/* paddingTop: 56px 防止 fixed 顶栏遮挡内容 */}
+      <Box sx={{ flex: 1, overflowY: 'auto', overflowX: 'hidden', pt: '56px' }}>
         <WeatherClock />
         <Dashboard />
       </Box>
